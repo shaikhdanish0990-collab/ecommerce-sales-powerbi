@@ -1,0 +1,30 @@
+E-Commerce Sales
+
+Add Columns==> Total Revenue = Ecom_Sales_Data[Quantity]*Ecom_Sales_Data[Item_Price]
+Add Columns==> Total Cost = Ecom_Sales_Data[Quantity]*Ecom_Sales_Data[Product_Cost]
+Add Columns==> Gross Porfit = Ecom_Sales_Data[Total Revenue]-Ecom_Sales_Data[Total Cost]
+Add Columns==> Discount Cost = Ecom_Sales_Data[Total Revenue]*Ecom_Sales_Data[Discount]
+
+Add Table ==> Measure =
+Add New Measure ==> Gross Profit = SUM(Ecom_Sales_Data[Gross Porfit])
+Add New Measure ==> Profit Margin % = DIVIDE('Measure'[Gross Profit],'Measure'[Total Sales],0)
+Add New Measure ==> Total Orders = DISTINCTCOUNT(Ecom_Sales_Data[Order_ID])
+Add New Measure ==> Total Sales = SUM(Ecom_Sales_Data[Total Revenue])
+Add New Measure ==> Unite Sold = SUM(Ecom_Sales_Data[Quantity])
+Add New Measure ==> Unite Sold Dispaly = FORMAT('Measure'[Unite Sold], "#,##0")
+Add New Measure ==> Total Orders Display=FORMAT('Measure'[Total Orders],"#,##0")
+
+
+Add Table ==> Calendar ==> Calendar = CALENDAR(MIN(Ecom_Sales_Data[Order_Date]), MAX(Ecom_Sales_Data[Order_Date]))
+Add Columns==> Month = FORMAT('Calendar'[Date],"MMM")
+Add Columns==> Month Number = MONTH('Calendar'[Date])
+Add Columns==> Year = YEAR('Calendar'[Date])
+Add Columns==> Year Month = FORMAT('Calendar'[Date], "MMMM YYYY")
+
+Marke a Relatship ==> Calendar => Ecom_Sales by Data.
+
+Top 10 Products by Sales
+
+E-Commerce Sales
+
+ECOMMERCE SALES DASHBOARD
